@@ -1,0 +1,10 @@
+/* Design tokens (match the Figma variables) */
+:root{
+  --primary:#144B57; --on-primary:#FFFFFF; --tint:#E3EEF0;
+  --page:#FFFBF5; --surface:#FFFFFF; --muted:#F1EADF; --image:#EFE7DA;
+  --text:#292524; --text-2:#57534E; --placeholder:#6B6055; --icon-muted:#8A7F72;
+  --border:#E7DFD3; --border-input:#BFB3A3;
+  --lost-bg:#FFEDD5; --lost-text:#9A3412; --found-bg:#CCFBF1; --found-text:#115E59;
+  --error:#B42318; --dot:#B45309;
+  --r-sm:8px; --r-md:12px; --r-lg:16px;
+}

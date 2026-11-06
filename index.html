@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#144B57">
+  <meta name="description" content="A simple board where students post and browse lost and found items on campus.">
+  <title>Lost &amp; Found Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+
+
+  <div class="app">
+    <main id="main">
+
+      <!-- 1 · Board -->
+      <section id="view-board" class="view" aria-labelledby="board-title">
+        <header class="vhead"><h1 id="board-title" tabindex="-1">Lost &amp; Found</h1></header>
+        <div class="body stack">
+          <fieldset class="seg" id="type-filter">
+            <legend class="sr-only">Show items</legend>
+            <label><input type="radio" name="typeFilter" value="all" checked><span>All</span></label>
+            <label><input type="radio" name="typeFilter" value="lost"><span>Lost</span></label>
+            <label><input type="radio" name="typeFilter" value="found"><span>Found</span></label>
+          </fieldset>
+
+          <div class="search-row">
+            <div class="search">
+              <svg class="i" aria-hidden="true"><use href="assets/icons.svg#i-search"/></svg>
+              <label for="q" class="sr-only">Search items</label>
+              <input id="q" type="search" placeholder="Search items" autocomplete="off">
+            </div>
+            <button id="filter-btn" class="icon-btn" type="button" aria-expanded="false" aria-controls="filter-panel">
+              <svg class="i" aria-hidden="true"><use href="assets/icons.svg#i-adjust"/></svg>
+              <span class="dot" id="filter-dot" hidden></span>
+              <span class="sr-only" id="filter-btn-label">Filters</span>
+            </button>
+          </div>
+
+          <form id="filter-panel" class="panel" hidden>
+            <div class="field">
+              <label for="f-category">Category</label>
+              <select id="f-category"><option value="">All categories</option></select>
+            </div>
+            <div class="two">
+              <div class="field">
+                <label for="f-location">Location</label>
+                <select id="f-location"><option value="">Any location</option></select>
+              </div>
+              <div class="field">
+                <label for="f-date">From date</label>
+                <input id="f-date" type="date">
+              </div>
+            </div>
+            <div class="actions">
+              <button type="button" class="btn secondary" id="f-clear">Clear</button>
+              <button type="submit" class="btn primary">Apply</button>
+            </div>
+          </form>
+
+          <div id="chips" class="chips" role="group" aria-label="Category filters"></div>
+          <p id="result-count" class="muted" aria-live="polite"></p>
+
+          <ul id="list" class="list" aria-label="Listings"></ul>
+
+          <div id="empty" class="empty" hidden>
+            <div class="empty-icon" aria-hidden="true"><svg class="i"><use href="assets/icons.svg#i-mood"/></svg></div>
+            <h2 id="empty-title">No items match</h2>
+            <p id="empty-text">Try another category or clear your filters.</p>
+            <button id="empty-clear" type="button" class="btn secondary narrow">Clear filters</button>
+          </div>
+        </div>
+        <div class="bar"><a class="btn primary" href="#/post"><svg class="i" aria-hidden="true"><use href="assets/icons.svg#i-plus"/></svg>Post an item</a></div>
+      </section>
+
+      <!-- 2 · Post form -->
+      <section id="view-form" class="view" hidden aria-labelledby="form-title">
+        <header class="vhead">
+          <a class="back" href="#/" aria-label="Back to board"><svg class="i" aria-hidden="true"><use href="assets/icons.svg#i-back"/></svg></a>
+          <h1 id="form-title" tabindex="-1">Post an item</h1>
+        </header>
+        <form id="post-form" class="body stack gap14" novalidate>
+          <fieldset class="seg">
+            <legend class="sr-only">Item type</legend>
+            <label><input type="radio" name="type" value="lost" checked><span>I lost</span></label>
+            <label><input type="radio" name="type" value="found"><span>I found</span></label>
+          </fieldset>
+
+          <div class="field">
+            <label for="p-title">Title</label>
+            <input id="p-title" name="title" type="text" maxlength="80" autocomplete="off" aria-describedby="p-title-err" required>
+            <p class="error" id="p-title-err" hidden><svg class="i" aria-hidden="true"><use href="assets/icons.svg#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="field">
+            <label for="p-category">Category</label>
+            <select id="p-category" name="category" aria-describedby="p-category-err" required><option value="">Select a category</option></select>
+            <p class="error" id="p-category-err" hidden><svg class="i" aria-hidden="true"><use href="assets/icons.svg#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="field">
+            <label for="p-location" id="p-location-label">Last seen at</label>
+            <input id="p-location" name="location" type="text" maxlength="80" autocomplete="off" aria-describedby="p-location-err" required>
+            <p class="error" id="p-location-err" hidden><svg class="i" aria-hidden="true"><use href="assets/icons.svg#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="field">
+            <label for="p-date">Date</label>
+            <input id="p-date" name="date" type="date" aria-describedby="p-date-err" required>
+            <p class="error" id="p-date-err" hidden><svg class="i" aria-hidden="true"><use href="assets/icons.svg#i-alert"/></svg><span></span></p>
+          </div>
+          <div class="field">
+            <label for="p-desc">Description <span class="muted">(optional)</span></label>
+            <textarea id="p-desc" name="description" rows="3" maxlength="300"></textarea>
+          </div>
+
+          <button type="button" class="upload" aria-disabled="true" aria-describedby="upload-note">
+            <svg class="i" aria-hidden="true"><use href="assets/icons.svg#i-camera"/></svg>
+            <span>Add a photo <span class="muted">(optional)</span></span>
+          </button>
+          <p id="upload-note" class="sr-only">Photo upload is not available in this version.</p>
+
+          <div class="bar inline"><button type="submit" class="btn primary">Post item</button></div>
+        </form>
+      </section>
+
+      <!-- 3 · Success -->
+      <section id="view-success" class="view" hidden aria-labelledby="success-title">
+        <header class="vhead"><h1 id="success-title" tabindex="-1">Post an item</h1></header>
+        <div class="body center">
+          <div class="big-icon ok" aria-hidden="true"><svg class="i"><use href="assets/icons.svg#i-check"/></svg></div>
+          <h2>Your item is posted</h2>
+          <p id="success-text" class="muted lg"></p>
+        </div>
+        <div class="bar stackbtns">
+          <a class="btn primary" href="#/">View on board</a>
+          <a class="btn secondary" href="#/post">Post another item</a>
+        </div>
+      </section>
+
+      <!-- 4 · Detail -->
+      <section id="view-detail" class="view" hidden aria-labelledby="detail-title">
+        <header class="vhead">
+          <a class="back" href="#/" aria-label="Back to board"><svg class="i" aria-hidden="true"><use href="assets/icons.svg#i-back"/></svg></a>
+          <h1 id="detail-title" tabindex="-1">Listing</h1>
+        </header>
+        <div class="body stack" id="detail-body"></div>
+        <div class="bar stackbtns" id="detail-actions"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <dialog id="close-dialog" aria-labelledby="dlg-title" aria-describedby="dlg-text">
+    <h2 id="dlg-title">Close this post?</h2>
+    <p id="dlg-text" class="muted lg">It won't appear on the board anymore.</p>
+    <div class="stackbtns">
+      <button type="button" class="btn primary" id="dlg-confirm">Yes, close post</button>
+      <button type="button" class="btn secondary" id="dlg-cancel">Cancel</button>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

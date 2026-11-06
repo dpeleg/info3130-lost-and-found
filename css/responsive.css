@@ -1,0 +1,18 @@
+/* Breakpoints: tablet (640px) and desktop (960px) */
+@media (min-width:640px){
+  .app{max-width:720px}
+  .vhead{padding:32px 28px 16px}
+  .vhead h1{font-size:1.75rem}
+  .body{padding:4px 28px 28px}
+  .bar{padding-left:28px;padding-right:28px}
+  .hero{height:260px}
+  .bar.stackbtns,.bar{flex-direction:row}
+  .bar .btn{flex:1}
+  .bar.inline{padding:8px 0 0}
+}
+@media (min-width:960px){
+  .app{max-width:960px}
+  .list{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .panel{max-width:640px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

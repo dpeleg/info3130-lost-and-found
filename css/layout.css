@@ -1,0 +1,23 @@
+/* App shell, views, headers, bottom action bar */
+/* layout */
+.app{max-width:560px;margin:0 auto;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+main{flex:1;display:flex;flex-direction:column}
+.view{flex:1;display:flex;flex-direction:column}
+.view[hidden]{display:none}
+.vhead{display:flex;align-items:center;gap:8px;padding:20px 20px 12px;color:var(--primary)}
+.vhead h1{font-size:1.375rem;font-weight:700;line-height:1.2}
+.vhead h1:focus{outline:none}
+.back{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-10px 0 -10px -10px;border-radius:var(--r-md);color:var(--primary);text-decoration:none}
+.back .i{width:1.5rem;height:1.5rem}
+.body{padding:4px 20px 20px;flex:1}
+.stack{display:flex;flex-direction:column;gap:12px}
+.gap14{gap:14px}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:0 28px}
+.center h2{font-size:1.625rem;font-weight:700;line-height:1.2}
+
+/* bottom action bar */
+.bar{position:sticky;bottom:0;background:var(--page);border-top:1px solid var(--border);padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px}
+.bar.inline{position:static;border:0;padding:8px 0 0;background:none}
+.bar:empty{display:none}
+.stackbtns{display:flex;flex-direction:column;gap:10px}
+
